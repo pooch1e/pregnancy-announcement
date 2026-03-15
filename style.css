@@ -1,9 +1,9 @@
 /* Customization Variables */
 :root {
     /* Colors */
-    --color-page-background: #f8c8a4;
+    --color-page-background: #fdf4ff;
     --color-main-container-background: #FF5B70;
-    --color-inner-container-background: #FFF7F4;
+    --color-inner-container-background: #f4faff;
     --color-border: #9E0E2B;
     --color-button-background: #FFF;
     --color-heading-text: #FFF;
@@ -18,6 +18,7 @@
     --font-family-main: "Pixelify Sans", sans-serif;
     --font-size-large: 1.75rem;
     --font-size-medium: 1.5635rem;
+    --font-size-small: 1.25rem;
 
     /* Border Radius */
     --border-radius: 0.31269rem;
@@ -47,7 +48,7 @@
   h1 {
     color: var(--color-heading-text);
     font-family: var(--font-family-main);
-    font-size: var(--font-size-large);
+    font-size: var(--font-size-medium);
     font-weight: 400;
     font-style: normal;
     line-height: normal;
@@ -69,7 +70,7 @@
     padding: var(--padding-container);
   }
 
-/* Inner container */
+  /* Inner container */
   .inner-container {
     position: relative;
     width: 100%;
@@ -96,6 +97,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    margin-bottom: 16px;
   }
 
   /* Shrink Close Icons */
@@ -145,7 +147,7 @@
     color: var(--color-button-text);
     text-align: center;
     font-family: var(--font-family-main);
-    font-size: var(--font-size-medium);
+    font-size: var(--font-size-small);
     font-weight: 400;
     font-style: normal;
     line-height: normal;
@@ -158,16 +160,14 @@
 
   .final-message {
     display: none; /* Hide it initially */
-    position: absolute;
-    bottom: 30px;
-    width: 100%;
-    text-align: center;
     color: var(--color-message-text);
+    text-align: center;
     font-family: var(--font-family-main);
     font-size: var(--font-size-large);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-top: 16px;
   }
 
   /* Responsive Styles for Mobile */
@@ -186,29 +186,41 @@
     }
   }
 
-  /* Floating Hearts */
+  /* Floating Hearts Styles */
   .floating-heart {
-    position: absolute;
+    position: fixed;
     width: 48px;
     height: 48px;
-    background-repeat: no-repeat;
     background-size: contain;
-    background-position: center;
+    background-repeat: no-repeat;
     pointer-events: none;
-    z-index: 100;
-    image-rendering: pixelated;
+    z-index: 9999;
+    left: 50%; /* Will be overridden by JS */
+    bottom: 20px;
+    opacity: 0.95;
+    animation: float-up 4s ease-in forwards, spin-heart 2s linear infinite;
   }
 
   @keyframes float-up {
     0% {
-      transform: translateY(0) translateX(0) scale(1);
-      opacity: 1;
+      transform: translateY(0) translateX(0);
+      opacity: 0.95;
     }
-    50% {
-      opacity: 1;
+    70% {
+      opacity: 0.95;
+      transform: translateY(-60vh) translateX(var(--drift, 0px));
     }
     100% {
-      transform: translateY(-280px) translateX(var(--drift)) scale(0.5);
       opacity: 0;
+      transform: translateY(-80vh) translateX(var(--drift, 0px));
+    }
+  }
+
+  @keyframes spin-heart {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
