@@ -23,7 +23,7 @@ const finalMessage = document.querySelector('.final-message');  // Final message
 // =============================================
 // STEP 2.1: Set up audio elements
 // =============================================
-const clickSound = new Audio('./assets/audio/click.mp3');
+const clickSound = new Audio('./assets/audio/click.wav');
 const finalSong = new Audio('./assets/audio/mario.wav');
 finalSong.preload = 'auto';
 finalSong.volume = 0.8;
